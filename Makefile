@@ -34,11 +34,19 @@ ft_strtrim.c \
 ft_itoa.c \
 ft_substr.c \
 ft_split.c
+SRCSB = ft_lstnew.c \
+ft_lstsize.c \
+ft_lstadd_front.c \
+ft_lstlast.c \
+ft_lstadd_back.c \
+ft_lstdelone.c \
+ft_lstclear.c \
+ft_lstiter.c \
+ft_lstmap.c
 OBJS = $(SRCS:.c=.o)
+OBJSB = $(SRCSB:.c=.o)
 NAME = libft.a
 AR = ar rcs
-
-all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -46,12 +54,17 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
+all: $(NAME)
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJSB) 
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(OBJSB) 
+	$(AR) $(NAME) $(OBJSB)
+
+.PHONY: all bonus clean fclean re

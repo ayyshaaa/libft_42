@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aistierl <aistierl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:19:22 by aistierl          #+#    #+#             */
-/*   Updated: 2024/06/20 16:28:00 by aistierl         ###   ########.fr       */
+/*   Created: 2024/06/10 17:45:45 by aistierl          #+#    #+#             */
+/*   Updated: 2024/06/11 16:11:07 by aistierl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_isalpha(int c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	lett;
-	
-	lett = c % 256;
-	if ((lett >= 65 && lett <= 90) || (lett >= 97 && lett <= 122))
-		return (1);
-	else
-		return (0);
+	t_list	*current;
+	t_list	*temporary;
+
+	if (del == NULL)
+		return ;
+	current = *lst;
+	while (current != NULL)
+	{
+		del(current->content);
+		temporary = current->next;
+		free(current);
+		current = temporary;
+	}
+	*lst = NULL;
 }

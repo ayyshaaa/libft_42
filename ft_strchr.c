@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aistierl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aistierl <aistierl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:29:00 by aistierl          #+#    #+#             */
-/*   Updated: 2024/05/30 13:43:56 by aistierl         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:00:24 by aistierl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
+#include <string.h>
 
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned int			i;
-	char					*result;
-	unsigned char			character;
+	unsigned int	i;
+	char			*result;
+	int				character;
 
 	result = (char *)s;
-	character = (unsigned char) c;
+	character = c % 256;
 	if (character == '\0')
 		return (result + ft_strlen(s));
 	else
